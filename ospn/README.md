@@ -110,7 +110,7 @@ $ mkdir project
 そしてSubmarine.jsのソースコードをダウンロードします  
 Node.jsのパッケージ管理ツールとしてはnpmやyarnがありますが、Submarine.jsは現時点では単にtarballを展開してインストールします  
 
-Submarine.jsの現時点(執筆時点)での最新バージョンはv1.1です
+Submarine.jsの執筆時点での最新バージョンはv1.1です
 
 ```
 $ cd project
