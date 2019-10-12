@@ -75,6 +75,13 @@ RubyのrenvやPythonのpyenvに相当するツールですね
 
 nvmの[githubページ](https://github.com/nvm-sh/nvm#install--update-script)を見るとcurlで一発でインストールできるようにしてくれてます
 
+```
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh | bash
+$ tail -n 4 .bashrc
+$ . .bashrc
+$ nvm --version
+```
+
 
 ![nvm-install](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/nvm-install-cropped.png)
 
