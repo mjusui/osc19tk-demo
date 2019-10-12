@@ -114,9 +114,9 @@ Submarine.jsの現時点(執筆時点)での最新バージョンはv1.1です
 
 ```
 $ cd project
-$ mkdir node_modules/v1.1
+$ mkdir -p node_modules/v1.1
 $ cd node_modules/v1.1
-$ curl https://gitlab.com/mjusui/submarine/-/archive/v1.1/submarine-v1.1.tar.gz
+$ curl -LO https://gitlab.com/mjusui/submarine/-/archive/v1.1/submarine-v1.1.tar.gz
 $ tar xzf submarine-v1.1.tar.gz
 $ mv submarine-v1.1 Submarine
 ```
