@@ -126,6 +126,7 @@ $ node Submarine/src/HelloWorld
 ![submarine-isntall](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/submarine-install-cropped.png)
 
 
+これでSubmarine.jsが、使えるようになりました
 
 
 # まずはコードを書いて、動かしてみよう
