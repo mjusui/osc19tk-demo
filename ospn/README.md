@@ -62,7 +62,7 @@ Submarine.jsを使うと、OpenStackよりかは導入が簡単で、自分た�
 
 ※この記事の手順は、Ubuntu18.04にて検証しています
 
-* Node.jsをインストール
+## Node.jsをインストール
 
 Submarine.jsはNode.jsで開発されているため、動作させるためにNode.jsのインストールが必要です
 
@@ -96,5 +96,10 @@ $ node --version
 ```
 
 ![node-install](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/node-install-cropped.png)
+
+# まずはコードを書いて、動かしてみよう
+
+
+
 
 
