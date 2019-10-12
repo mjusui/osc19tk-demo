@@ -119,6 +119,7 @@ $ cd node_modules/v1.1
 $ curl -LO https://gitlab.com/mjusui/submarine/-/archive/v1.1/submarine-v1.1.tar.gz
 $ tar xzf submarine-v1.1.tar.gz
 $ mv submarine-v1.1 Submarine
+$ rm submarine-v1.1
 ```
 
 
