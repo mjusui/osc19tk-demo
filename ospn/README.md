@@ -97,6 +97,27 @@ $ node --version
 
 ![node-install](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/node-install-cropped.png)
 
+
+## Submarine.jsのインストール
+
+次にSubmarine.jsをインストールします  
+まずはSubmarine.jsのコードを管理するプロジェクト用のディレクトリを作成します
+
+```
+$ mkdir project
+```
+
+そしてSubmarine.jsのソースコードをダウンロードします  
+Node.jsのパッケージ管理ツールとしてはnpmやyarnがありますが、Submarine.jsは現時点では単にtarballを展開してインストールします  
+
+
+```
+$ node_modules
+$ cd nodr_modules
+$ curl https://gitlab.com/mjusui/submarine/-/archive/v1.1/submarine-v1.1.tar.gz
+
+
+
 # まずはコードを書いて、動かしてみよう
 
 
