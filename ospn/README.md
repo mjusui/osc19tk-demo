@@ -90,6 +90,11 @@ nvmがインストールできたところで、次はいよいよNode.jsをイ�
 
 Submarine.jsはNode.jsの長期サポート版(LTS)である10.x系(記事執筆時)での動作が保証されていますので、今回は10.x系の最新版をインストールします
 
+```
+$ nvm install --lts
+$ node --version
+```
 
+![node-install](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/node-install-cropped.png)
 
 
