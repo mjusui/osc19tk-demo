@@ -120,6 +120,7 @@ $ curl -LO https://gitlab.com/mjusui/submarine/-/archive/v1.1/submarine-v1.1.tar
 $ tar xzf submarine-v1.1.tar.gz
 $ mv submarine-v1.1 Submarine
 $ rm submarine-v1.1.tar.gz
+$ node Submarine/src/HelloWorld
 ```
 
 ![submarine-isntall](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/submarine-install-cropped.png)
