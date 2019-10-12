@@ -122,6 +122,8 @@ $ mv submarine-v1.1 Submarine
 $ rm submarine-v1.1
 ```
 
+![submarine-isntall](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/submarine-install-cropped.png)
+
 
 # まずはコードを書いて、動かしてみよう
 
