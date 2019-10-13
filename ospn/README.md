@@ -135,9 +135,36 @@ Submarine.jsがどういうものかはおいておいて、まずはコード�
 
 projectディレクトリに戻って、以下のファイルを作ってください
 
-```MyHost.js
 
+```MyHost.js
+const Submarine=require('v1.1/Submarine');
+
+
+const MyHost=class extends Submarine {
+
+  query(){
+    return {
+
+      hostname: 'hostname -s',
+
+    };
+  }
+
+}
+
+
+const myhost=new MyHost({
+  conn: 'sh',
+});
+
+
+
+myhost.current()
+  .then(console.log)
+  .catch(console.error);
 ```
+
+
 
 JavaScriptやNode.jsの知識があると、ここで登場するコードを深く理解できますが、必須ではありません  
 それよりもむしろShellScriptを上手く書く技術があると、Submarine.jsのパワフルさを感じることができるでしょう
