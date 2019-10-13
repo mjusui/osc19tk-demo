@@ -179,12 +179,12 @@ $ node MyHost.js
 ![my-host-js](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-js-cropped.png)
 
 
-query関数の中で定義した'hostname -s'がlocalhost上のshで実行され、その結果がJSON形式で表示されます
+query関数の中で定義したhostname -sがlocalhost上のshで実行され、その結果がJSON形式で表示されます
 
 ではMyHost.jsの中身を、順を追って説明していきます
 
 ```MyHost.js
-const Submarine=require('v1.1/Submarine');
+const Submarine=require(v1.1/Submarine');
 ```
 
 まず一行目。JavaScriptを知らない方からすると、いきなり分からない文字が出てきますが、一つずつ分解してみます
@@ -195,7 +195,7 @@ require('v1.1/Submarine') : 先ほどnode_modules/v1.1/Submarineに展開したt
 
 ```
 
-const Submarine=require('v1.1/Submarine'); でSubmarineという定数に'v1.1/Submarine'を代入するよ、という意味です
+const Submarine=require('v1.1/Submarine'); でSubmarineという定数にv1.1/Submarineを代入するよ、という意味です
 「これからSubmarine.jsのv1.1を使いますよ」と宣言している、という程度の理解で大丈夫です
 
 そして次にMyHostという定数を宣言している部分
@@ -208,7 +208,7 @@ const MyHost=class extends Submarine {
 }
 ```
 
-'class extends Submarine { ~ }'というのは、Submarineクラスを自分用にカスタマイズして使う、という意味です
+class extends Submarine { ~ }というのは、Submarineクラスを自分用にカスタマイズして使う、という意味です
 
 これは先ほどのrequire('v1.1/Submarine')の部分で、Submarineという定数の中にSubmarine.jsがあらかじめ用意したクラスが代入されているのですが、それに自分が使いたいようにアレンジを加えて使います、という意味です
 
