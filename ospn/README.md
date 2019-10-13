@@ -184,7 +184,7 @@ query関数の中で定義したhostname -sがlocalhost上のshで実行され�
 ではMyHost.jsの中身を、順を追って説明していきます
 
 ```MyHost.js
-const Submarine=require(v1.1/Submarine');
+const Submarine=require('v1.1/Submarine');
 ```
 
 まず一行目。JavaScriptを知らない方からすると、いきなり分からない文字が出てきますが、一つずつ分解してみます
