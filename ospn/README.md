@@ -193,7 +193,24 @@ const Submarine=require('v1.1/Submarine');
 const : JavaScriptで定数を宣言する際に、定数の前に書きます。constで定義された定数には、値を再代入できないという特徴があります
 require('v1.1/Submarine') : 先ほどnode_modules/v1.1/Submarineに展開したtarballを読み込んでいます
 
+```
+
 const Submarine=require('v1.1/Submarine'); でSubmarineという定数に'v1.1/Submarine'を代入するよ、という意味です
 「これからSubmarine.jsのv1.1を使いますよ」と宣言している、という程度の理解で大丈夫です
+
+そして次にMyHostという定数を宣言している部分
+
 ```
+const MyHost=class extends Submarine {
+
+~
+
+}
+```
+
+'class extends Submarine { ~ }'というのは、Submarineクラスを自分用にカスタマイズして使う、という意味です
+
+これは先ほどのrequire('v1.1/Submarine')の部分で、Submarineという定数の中にSubmarine.jsがあらかじめ用意したクラスが代入されているのですが、それに自分が使いたいようにアレンジを加えて使います、という意味です
+
+
 
