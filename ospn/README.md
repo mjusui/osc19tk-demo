@@ -131,6 +131,18 @@ $ node Submarine/src/HelloWorld
 
 # まずはコードを書いて、動かしてみよう
 
+Submarine.jsがどういうものかはおいておいて、まずはコードを書いて、動かしてみます
+
+projectディレクトリに戻って、以下のファイルを作ってください
+
+```MyHost.js
+
+```
+
+JavaScriptやNode.jsの知識があると、ここで登場するコードを深く理解できますが、必須ではありません  
+それよりもむしろShellScriptを上手く書く技術があると、Submarine.jsのパワフルさを感じることができるでしょう
+
+
 
 
 
