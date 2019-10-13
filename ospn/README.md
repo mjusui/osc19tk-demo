@@ -133,6 +133,12 @@ $ node Submarine/src/HelloWorld
 
 Submarine.jsがどういうものかはおいておいて、まずはコードを書いて、動かしてみます
 
+JavaScriptやNode.jsの知識があると、ここで登場するコードを深く理解できますが、はじめはそれらの知識は必須ではありません  
+Submarine.jsを利用していく中で、少しずつ身に付けていくことをおすすめします
+
+それよりもむしろShellScriptを上手く書く技術があると、Submarine.jsのパワフルさを感じることができるでしょう
+
+
 projectディレクトリに戻って、以下のファイルを作ってください
 
 
@@ -172,11 +178,22 @@ $ node MyHost.js
 
 ![my-host-js](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-js-cropped.png)
 
-JavaScriptやNode.jsの知識があると、ここで登場するコードを深く理解できますが、必須ではありません  
-それよりもむしろShellScriptを上手く書く技術があると、Submarine.jsのパワフルさを感じることができるでしょう
 
+query関数の中で定義した'hostname -s'がlocalhost上のshで実行され、その結果がJSON形式で表示されます
 
+ではMyHost.jsの中身を、順を追って説明していきます
 
+```MyHost.js
+const Submarine=require('v1.1/Submarine');
+```
 
+まず一行目。JavaScriptを知らない方からすると、いきなり分からない文字が出てきますが、一つずつ分解してみます
 
+```
+const : JavaScriptで定数を宣言する際に、定数の前に書きます。constで定義された定数には、値を再代入できないという特徴があります
+require('v1.1/Submarine') : 先ほどnode_modules/v1.1/Submarineに展開したtarballを読み込んでいます
+
+const Submarine=require('v1.1/Submarine'); でSubmarineという定数に'v1.1/Submarine'を代入するよ、という意味です
+「これからSubmarine.jsのv1.1を使いますよ」と宣言している、という程度の理解で大丈夫です
+```
 
