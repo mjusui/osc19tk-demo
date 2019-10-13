@@ -164,7 +164,7 @@ myhost.current()
   .catch(console.error);
 ```
 
-
+![my-host-js](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-js-cropped.png)
 
 JavaScriptやNode.jsの知識があると、ここで登場するコードを深く理解できますが、必須ではありません  
 それよりもむしろShellScriptを上手く書く技術があると、Submarine.jsのパワフルさを感じることができるでしょう
