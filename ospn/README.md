@@ -210,7 +210,9 @@ const MyHost=class extends Submarine {
 
 class extends Submarine { ~ }というのは、Submarineクラスを自分用にカスタマイズして使う、という意味です
 
-これは先ほどのrequire('v1.1/Submarine')の部分で、Submarineという定数の中にSubmarine.jsがあらかじめ用意したクラスが代入されているのですが、それに自分が使いたいようにアレンジを加えて使います、という意味です
+これは先ほどのrequire('v1.1/Submarine')の部分で、Submarineという定数の中にSubmarine.jsがあらかじめ用意したクラスが代入されているのですが、それに自分が使いたいようにアレンジを加えて使います、ということを宣言しているのです
+
+
 
 
 
