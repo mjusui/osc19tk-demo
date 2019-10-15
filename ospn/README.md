@@ -234,7 +234,22 @@ class extends Submarine { ~ }というのは、Submarineクラスを拡張して
 
 query関数がreturnする値はkeyとShellScriptの組み合わせを複数持つこともできます
 
+```
+  query(){
+    return {
 
+      hostname: 'hostname -s',
+
+      ip_addrs: String.raw`
+
+        ip -o -f inet a \
+          |awk '{print $4}'
+
+      `,
+
+    };
+  }
+```
 
 query関数の定義の部分
 
