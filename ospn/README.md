@@ -230,7 +230,7 @@ class extends Submarine { ~ }というのは、Submarineクラスを拡張して
 これはSubmarine.jsのクラスがあらかじめ持っているqueryという関数を、自分用にカスタマイズした部分です  
 つまりSubmarine.jsユーザはSubmarine.jsのクラスを拡張し、query関数を上書きしたことになります
 
-ここではquery関数がreturn { ~ }で{ ~ }を結果として返すようになっています。この{ ~ }の中に{ <key>: <ShellScript> }というフォーマットでShellScriptを記述しておきます。すると、のちに紹介するcurrent関数を実行した際に、Submarine.jsが、query関数のreturn結果をターゲットのサーバにログインして実行します。実行した結果、標準出力に表示された文字列が、最終的なcurrent関数の結果として返されます
+ここではquery関数がreturn { ~ }で{ ~ }を結果として返すようになっています。この{ ~ }の中に{ [key]: [ShellScript] }というフォーマットでShellScriptを記述しておきます。すると、のちに紹介するcurrent関数を実行した際に、Submarine.jsが、query関数のreturn結果をターゲットのサーバにログインして実行します。実行した結果、標準出力に表示された文字列が、最終的なcurrent関数の結果として返されます
 
 query関数がreturnする値はkeyとShellScriptの組み合わせを複数持つこともできます
 
