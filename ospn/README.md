@@ -251,6 +251,8 @@ query関数がreturnする値はkeyとShellScriptの組み合わせを複数持�
   }
 ```
 
+![my-host-2-js](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-2-js-cropped.png)
+
 query関数の定義の部分
 
 
