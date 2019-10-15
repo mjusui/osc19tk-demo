@@ -234,6 +234,8 @@ class extends Submarine { ~ }というのは、Submarineクラスを拡張して
 
 query関数がreturnする値はkeyとShellScriptの組み合わせを複数持つこともできます
 
+
+
 query関数の定義の部分
 
 
