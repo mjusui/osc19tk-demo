@@ -348,15 +348,25 @@ myhost.check()
 
 そして新しくtestという関数の定義が加えられ、さらに、current関数の変わりにcheck関数を実行しています
 
-このtestという関数が、query関数と同じくSubmarine.jsを拡張して、定義される関数になります  
+このtestという関数が、query関数と同じくSubmarine.jsを拡張しています  
 この関数の特性は、current関数の結果(すなわちquery関数で定義したコマンド群の結果)を第一引数として受け取り、それらを文字通りtestする関数となります
 
-上のサンプルでは、query上でUbuntuのバージョン文字列を取得し、testで、その文字列が'Ubuntu 18.04.3 LTS'と一致することを確認しています
+上のサンプルでは、queryでUbuntuのバージョン文字列を取得し、testで、その文字列が'Ubuntu 18.04.3 LTS'と一致することを確認しています
 
 ![my-host-js-3](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-3-js-cropped.png)
 
 
-このコードを実行すると、画像のようなJSON形式の値が表示されます
+このコードを実行すると、画像のようなJSON形式の値が表示されます  
+1つずつ、中身を確認していきましょう
+
+```
+stats : current関数の結果
+tests : test関数でreturnされた結果
+good : testsのうちテストをパスした数(trueの数)
+bad : testsのうちテストをパスできなかった数(falseの数)
+total : テストの数
+ok : テストが全てパスした場合はtrue、1つでもパスできなかった場合はfalse
+```
 
 
 
