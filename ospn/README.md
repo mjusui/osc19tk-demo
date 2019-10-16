@@ -311,6 +311,11 @@ query関数では、サーバの状態を取得することができました。
 Submarine.jsでは、サーバの現在の状態が、あるべき状態なのか、そうでないのかを調べるためにtestという関数が用意されています
 
 
+```
+```
+
+
+![my-host-js-3](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-3-js-cropped.png)
 
 
 
