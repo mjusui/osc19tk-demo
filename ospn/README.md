@@ -311,7 +311,36 @@ query関数では、サーバの状態を取得することができました。
 Submarine.jsでは、サーバの現在の状態が、あるべき状態なのか、そうでないのかを調べるためにtestという関数が用意されています
 
 
-```
+```MyHost3.js
+const Submarine=require('v1.1/Submarine');
+
+
+const MyHost=class extends Submarine {
+
+  query(){
+    return {
+      issue: 'cat /etc/issue.net',
+    };
+  }
+
+  test(stats){
+    return {
+      ubuntu_is_18_04_3_lts: stats.issue === 'Ubuntu 18.04.3 LTS',
+    };
+  }
+
+}
+
+
+const myhost=new MyHost({
+  conn: 'sh',
+});
+
+
+
+myhost.check()
+  .then(console.log)
+  .catch(console.error);
 ```
 
 
