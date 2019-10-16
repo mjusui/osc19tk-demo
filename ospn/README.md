@@ -348,11 +348,15 @@ myhost.check()
 
 そして新しくtestという関数の定義が加えられ、さらに、current関数の変わりにcheck関数を実行しています
 
+このtestという関数が、query関数と同じくSubmarine.jsを拡張して、定義される関数になります  
+この関数の特性は、current関数の結果(すなわちquery関数で定義したコマンド群の結果)を第一引数として受け取り、それらを文字通りtestする関数となります
+
+上のサンプルでは、query上でUbuntuのバージョン文字列を取得し、testで、その文字列が'Ubuntu 18.04.3 LTS'と一致することを確認しています
 
 ![my-host-js-3](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-3-js-cropped.png)
 
 
-
+このコードを実行すると、画像のようなJSON形式の値が表示されます
 
 
 
