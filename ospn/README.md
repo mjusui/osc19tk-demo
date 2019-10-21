@@ -373,7 +373,57 @@ Submarine.jsはqueryにより、サーバの現在の状態を取得し、test�
 
 これまでのquery関数やtest関数は、サーバの状態を確認する、いわば読み取り(Read)の処理でしたが、今度は状態を変更する書き込み(Write)の処理を実行します
 
+```
+const Submarine=require('v1.1/Submarine');
 
+
+const MyHost=class extends Submarine {
+
+  query(){
+    return {
+      project2_dir: String.raw`
+
+        test \
+          -d /home/mjusui/project2 \
+        && echo 'present' \
+        || echo 'not present'
+
+      `
+    };
+  }
+
+  test(stats){
+    return {
+      project2_dir_exists: stats.project2_dir === 'present'
+    };
+  }
+
+  command(){
+    return String.raw`
+      dir=/home/mjusui/project2/node_modules/v1.1
+
+      mkdir -p $dir \
+      && cd $dir \
+      && curl -LO \
+        https://gitlab.com/mjusui/submarine/-/archive/v1.1/submarine-v1.1.tar.gz \
+      && tar xzf submarine-v1.1.tar.gz \
+      && mv submarine-v1.1 Submarine
+    `;
+
+  }
+}
+
+
+const myhost=new MyHost({
+  conn: 'sh',
+});
+
+
+
+myhost.correct()
+  .then(console.log)
+  .catch(console.error);
+```
 
 
 
