@@ -425,7 +425,22 @@ myhost.correct()
   .catch(console.error);
 ```
 
+query, testときて、次はcommand関数を実装します
+
+上記のサンプルコードでは、まずquery関数で`/home/mjusui/project2`がディレクトリとして存在している場合は`present`、存在していない場合は`not present`の文字列を返します。そしてtest関数でqueryの結果が`present`であることを確認しています(つまりホームディレクトリにproject2というディレクトリが存在しているか判定していることになります)
+
+command関数の実行には、query関数の実行はcurrent関数、test関数はcheck関数、に対してcorrect関数を使用します
+
+このcorrect関数は「testが失敗(1つでもfalseが含まれる)の場合のみcommandを実行する」という特徴があります。なので今回、新しく登場したcommand関数は「ホームディレクトリにproject2ディレクトリが存在しない場合に実行されるShellScript」を返すように書かれています
+
+サンプルコードではcommand関数が呼び出された場合には`/home/mjusui/project2`を作成し、Submarine.jsを使えるようセットアップするShellScriptが定義されています
+
+これをnodeコマンドで実行した結果が、下のスクリーンショットとなります
+
 ![my-host-4-js1](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-4-js1-cropped.png)
+
+
+
 ![my-host-4-js2](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-4-js2-cropped.png)
 
 
