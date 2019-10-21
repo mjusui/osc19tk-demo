@@ -181,7 +181,7 @@ $ node MyHost.js
 ![my-host-js](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-js-cropped.png)
 
 
-query関数の中で定義したhostname -sがlocalhost上のshで実行され、その結果がJSON形式で表示されます
+query関数の中で定義した`hostname -s`がlocalhost上のshで実行され、その結果がJSON形式で表示されます
 
 ではMyHost.jsの中身を、順を追って説明していきます
 
@@ -194,10 +194,9 @@ const Submarine=require('v1.1/Submarine');
 ```
 const : JavaScriptで定数を宣言する際に、定数の前に書きます。constで定義された定数には、値を再代入できないという特徴があります
 require('v1.1/Submarine') : 先ほどnode_modules/v1.1/Submarineに展開したtarballを読み込んでいます
-
 ```
 
-const Submarine=require('v1.1/Submarine'); でSubmarineという定数にv1.1/Submarineから読み込んだものを代入するよ、という意味です
+`const Submarine=require('v1.1/Submarine');`でSubmarineという定数にv1.1/Submarineから読み込んだものを代入するよ、という意味です
 「これからSubmarine.jsのv1.1を使いますよ」と宣言している、という程度の理解で大丈夫です
 
 そして次にMyHostという定数を宣言している部分
@@ -210,9 +209,9 @@ const MyHost=class extends Submarine {
 }
 ```
 
-class extends Submarine { ~ }というのは、Submarineクラスを拡張して使う、という意味です  
+`class extends Submarine { ~ }`というのは、Submarineクラスを拡張して使う、という意味です  
 
-これは先ほどのrequire('v1.1/Submarine')の部分で、Submarineという定数の中にSubmarine.jsがあらかじめ用意したクラスが代入されているのですが、それに自分が使いたいようにアレンジを加えて使います、ということを宣言しているのです
+これは先ほどの`require('v1.1/Submarine');`の部分で、Submarineという定数の中にSubmarine.jsがあらかじめ用意したクラスが代入されているのですが、それに自分が使いたいようにアレンジを加えて使います、ということを宣言しているのです
 
 クラスというのはオブジェクト指向プログラミングの世界の概念なのですが、ここでは単に「Submarine.jsがベースとなるコードをクラスという単位で、あらかじめ、まとめてくれている」というくらいの理解で大丈夫です
 
@@ -231,7 +230,7 @@ class extends Submarine { ~ }というのは、Submarineクラスを拡張して
 これはSubmarine.jsのクラスがあらかじめ持っているqueryという関数を、自分用にカスタマイズした部分です  
 つまりこれは、Submarine.jsのクラスを拡張し、query関数を上書きしたことになります
 
-ここではquery関数がreturn { ~ }で{ ~ }を結果として返すようになっています。この{ ~ }の中に{ [key]: [ShellScript] }というフォーマットでShellScriptを記述しておきます。すると、のちに紹介するcurrent関数を実行した際に、Submarine.jsが、query関数のreturn結果をターゲットのサーバにログインして実行します。実行した結果、標準出力に表示された文字列が、最終的なcurrent関数の結果として返されます
+ここではquery関数が`return { ~ }`で{ ~ }を結果として返すようになっています。この{ ~ }の中に`{ <key>: <ShellScript>, ... }`というフォーマットでShellScriptを記述しておきます。すると、のちに紹介するcurrent関数を実行した際に、Submarine.jsが、query関数のreturn結果をターゲットのサーバにログインして実行します。実行した結果、標準出力に表示された文字列が、最終的なcurrent関数の結果として返されます
 
 query関数がreturnする値はkeyとShellScriptの組み合わせを複数持つこともできます
 
@@ -257,7 +256,7 @@ query関数がreturnする値はkeyとShellScriptの組み合わせを複数持�
 上記のようにhostnameだけでなくip_addrsというkeyを追加し、ホストに設定されているIPアドレスの一覧を取得することもできます  
 とにかく、この部分は、プログラマが参照したい値を取得するShellScriptを自由に書いていいのです
 
-ここでString.raw\` ~ \`という書き方が新しく出てきました。これは\` ~ \`で囲われた文字列の中のエスケープ処理を無視して、生の文字列として扱うよ、という意味です  
+ここで`String.raw` ~ ``という書き方が新しく出てきました。これは\` ~ \`で囲われた文字列の中のエスケープ処理を無視して、生の文字列として扱うよ、という意味です  
 これがあることによって、ShellScriptを文字列として記述しても、わずらわしいエスケープ処理に悩まされずに済むのです  
 基本的に複数行にわたるコマンドを書くときには、必ずこれでくくることをおすすめします
 
