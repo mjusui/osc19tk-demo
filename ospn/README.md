@@ -437,11 +437,8 @@ command関数の実行には、query関数の実行はcurrent関数、test関数
 
 これをnodeコマンドで実行した結果が、下のスクリーンショットとなります
 
-![my-host-4-js1](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-4-js1-cropped.png)
+![my-host-4-js](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-4-js-cropped.png)
 
-
-
-![my-host-4-js2](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-4-js2-cropped.png)
 
 
 
