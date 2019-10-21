@@ -425,8 +425,8 @@ myhost.correct()
   .catch(console.error);
 ```
 
-[my-host-4-js1](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-4-js1.png)
-[my-host-4-js2](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-4-js2.png)
+![my-host-4-js1](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-4-js1.png)
+![my-host-4-js2](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-4-js2.png)
 
 
 
