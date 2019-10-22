@@ -515,4 +515,60 @@ Submarine.jsの機能を使って、OpenStackなどのオーケストレーシ�
 複数台にSubmarine.jsでコマンドを実行する例を見てみましょう
 
 
+```
+const Submarine=require('v1.1/Submarine');
+
+
+const Kvm=class extends Submarine {
+
+  query(){
+    return {
+      hostname: 'hostname -s',
+
+      libvirtd: String.raw`
+
+        virsh version \
+          > /dev/null \
+        && echo 'ready' \
+        || echo 'not ready'
+
+      `
+    };
+  }
+
+  test(stats){
+    return {
+      libvirtd_is_ready: stats.libvirtd === 'ready'
+    };
+  }
+
+}
+```
+```
+const Kvms=Submarine.hosts(
+  host => new Kvm({
+    conn: 'ssh',
+    host: host
+  }),
+
+  'ubu1804-kvm1',
+  'ubu1804-kvm2'
+);
+
+```
+
+```
+const kvms=new Kvms();
+
+
+kvms.check()
+  .then(console.log)
+  .catch(console.error);
+
+```
+
+
+
+
+
 ## 
