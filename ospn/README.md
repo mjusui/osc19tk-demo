@@ -178,7 +178,7 @@ myhost.current()
 $ node MyHost.js
 ```
 
-![my-host-js](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-js-cropped.png)
+![my-host-js](./my-host-js-cropped.png)
 
 
 query関数の中で定義した`hostname -s`がlocalhost上のshで実行され、その結果がJSON形式で表示されます
@@ -251,7 +251,7 @@ query関数がreturnする値はkeyとShellScriptの組み合わせを複数持�
   }
 ```
 
-![my-host-2-js](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-2-js-cropped.png)
+![my-host-2-js](./my-host-2-js-cropped.png)
 
 上記のようにhostnameだけでなくip_addrsというkeyを追加し、ホストに設定されているIPアドレスの一覧を取得することもできます  
 とにかく、この部分は、プログラマが参照したい値を取得するShellScriptを自由に書いていいのです
@@ -352,7 +352,7 @@ myhost.check()
 
 上のサンプルでは、queryでUbuntuのバージョン文字列を取得し、testで、その文字列が`Ubuntu 18.04.3 LTS`と一致することを確認しています
 
-![my-host-js-3](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-3-js-cropped.png)
+![my-host-js-3](./my-host-3-js-cropped.png)
 
 
 このコードを実行すると、画像のようなJSON形式の値が表示されます  
@@ -439,7 +439,7 @@ correct = 修正する、つまり失敗したテストが成功するように�
 
 これをnodeコマンドで実行した結果が、下のスクリーンショットとなります
 
-![my-host-4-js](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/my-host-4-js-cropped.png)
+![my-host-4-js](./my-host-4-js-cropped.png)
 
 
 実行する前はproject2ディレクトリは存在しませんでしたが、1度の実行した後に生成されています。また、この記事で紹介したとおりHelloWorldが実行できていることから、Submarine.jsがセットアップできていることも確認できます
@@ -590,7 +590,6 @@ kvms.check()
 
 実行結果は、check関数の結果がリモートサーバの数だけ配列に格納されて表示されます
 
-![kvm-js](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/kvm-js-cropped.png)
 ![kvm-js](./kvm-js-cropped.png)
 
 
