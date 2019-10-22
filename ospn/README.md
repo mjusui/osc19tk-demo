@@ -512,8 +512,10 @@ Submarine.jsの機能を使って、OpenStackなどのオーケストレーシ�
 
 このあたりはAnsibleと同様です
 
-複数台にSubmarine.jsでコマンドを実行する例を見てみましょう
+複数台にSubmarine.jsでコマンドを実行する例を見てみましょう  
+これまで紹介したコードとの違いが分かりやすいよう、サンプルコードを3段階に分けて記載しています
 
+まずは、この記事で以前にも紹介したとおり、Submarine.jsを拡張したクラスを定義します
 
 ```
 const Submarine=require('v1.1/Submarine');
@@ -544,6 +546,12 @@ const Kvm=class extends Submarine {
 
 }
 ```
+
+ホスト名と、virshコマンドでKVM関連のツールのバージョンを取得できるかをquery関数で確認し、test関数でKVM環境が整っているかどうかを判定しています  
+ここまでは、これまで紹介したコードと同じようにクラスを定義した部分です
+
+そしてここからが、定義したクラスを複数ホストに対して、適用できるようにする部分です
+
 ```
 const Kvms=Submarine.hosts(
   host => new Kvm({
@@ -557,6 +565,17 @@ const Kvms=Submarine.hosts(
 
 ```
 
+`Submarine.hosts( ~ )`という関数によって、定義したクラスを、複数サーバに対して適用できるようにします。ここで` ~ `の部分の2番目以降の引数には、リモートのホスト名(ここでは`/etc/hosts`で名前解決しています)かIPアドレスを記述します。そして、それらが1番目の引数として与えられた関数の第一引数(コード上ではhostという変数)に格納されて渡されるので、そのhost変数を使ってKvmクラスをnewします
+
+2番目以降の引数は何個でも追加できますので、それらが増えた分だけ、1番目の引数に指定した関数が呼ばれることになります
+
+ここで`Submarine.hosts( ~ )`の第一引数に、見慣れない矢印(=>)が書かれていますが、JavaScriptでは、こういう書き方で関数を表現できます  
+これは`function(host){ return new Kvm({ conn: 'ssh', host: host }); }`と書くのと同じことです
+
+こうして複数サーバに対してコマンドを実行できる、新たなクラスが生成されました  
+あとは`Submarine.hosts( ~ )`で生成されたクラスをnewしてcheckコマンドを実行します
+
+
 ```
 const kvms=new Kvms();
 
@@ -567,6 +586,7 @@ kvms.check()
 
 ```
 
+ここはlocalhostでshellを実行する場合と、同じでcurrentやcorrect関数も使えます
 
 
 
