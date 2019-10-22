@@ -588,6 +588,10 @@ kvms.check()
 
 ここはlocalhostでshellを実行する場合と、同じでcurrentやcorrect関数も使えます
 
+実行結果はこんな感じで、check関数の結果がリモートサーバの数だけ配列に格納されて表示されます
+
+![kvm-js](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/kvm-js-cropped.png)
+
 
 
 
