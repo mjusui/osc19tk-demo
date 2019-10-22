@@ -464,14 +464,15 @@ Submarine.jsの機能を使って、OpenStackなどのオーケストレーシ�
 
 機能の実装に入る前に、この記事で利用した環境情報を明記しておきます
 
-* Submarine.js動作環境
-  OS : Ubuntu 18.04
-  Node.js : 10.16
+* Submarine.js動作環境  
+  OS : Ubuntu 18.04  
+  Node.js : 10.16  
   Submarine.js : v1.1
 
-* KVMサーバ(2台)
-  OS : Ubuntu 18.04
-  libvirtd : 
+* KVMサーバ(2台)  
+  OS : Ubuntu 18.04  
+  libvirtd : 4.0.0
 
-
+* 
+  OS : CentOS7  
 
