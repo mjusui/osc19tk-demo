@@ -573,7 +573,7 @@ const Kvms=Submarine.hosts(
 これは`function(host){ return new Kvm({ conn: 'ssh', host: host }); }`と書くのと同じことです
 
 こうして複数サーバに対してコマンドを実行できる、新たなクラスが生成されました  
-あとは`Submarine.hosts( ~ )`で生成されたクラスをnewしてcheckコマンドを実行します
+あとは新しく生成された`Kvms`クラスをnewしてcheckコマンドを実行します
 
 
 ```
