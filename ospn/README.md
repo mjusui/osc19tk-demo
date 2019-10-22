@@ -474,7 +474,6 @@ Submarine.jsの機能を使って、OpenStackなどのオーケストレーシ�
   ```
   OS : Ubuntu 18.04
   libvirtd : 4.0.0
-  ※仮想マシンにlibvirtをインストールしてネストしています
   ```
 * 作成する仮想マシン
   ```
