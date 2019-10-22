@@ -84,7 +84,7 @@ $ nvm --version
 ```
 
 
-![nvm-install](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/nvm-install-cropped.png)
+![nvm-install](./nvm-install-cropped.png)
 
 
 nvmがインストールできたところで、次はいよいよNode.jsをインストールします
@@ -96,7 +96,7 @@ $ nvm install --lts
 $ node --version
 ```
 
-![node-install](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/node-install-cropped.png)
+![node-install](./node-install-cropped.png)
 
 
 ## Submarine.jsのインストール
@@ -124,7 +124,7 @@ $ rm submarine-v1.1.tar.gz
 $ node Submarine/src/HelloWorld
 ```
 
-![submarine-isntall](https://github.com/mjusui/osc19tk-demo/blob/master/ospn/submarine-install-cropped.png)
+![submarine-isntall](./submarine-install-cropped.png)
 
 
 これでSubmarine.jsが、使えるようになりました
