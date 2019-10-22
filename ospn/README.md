@@ -201,7 +201,7 @@ require('v1.1/Submarine') : 先ほどnode_modules/v1.1/Submarineに展開したt
 
 そして次にMyHostという定数を宣言している部分
 
-```
+```MyHost.js
 const MyHost=class extends Submarine {
 
 ~
@@ -217,7 +217,7 @@ const MyHost=class extends Submarine {
 
 そして、いよいよクラスの中のShellコマンドが記述されたqueryという部分
 
-```
+```MyHost.js
   query(){
     return {
 
@@ -234,7 +234,7 @@ const MyHost=class extends Submarine {
 
 query関数がreturnする値はkeyとShellScriptの組み合わせを複数持つこともできます
 
-```
+```MyHost2.js
   query(){
     return {
 
@@ -267,7 +267,7 @@ ip_addrsはホストのIPアドレスが2つ以上あり、コマンドの実行
 
 コードの残りの部分についても、説明しましょう
 
-```
+```MyHost.js
 const myhost=new MyHost({
   conn: 'sh',
 });
@@ -287,7 +287,7 @@ const myhost=new MyHost({
 
 そして最後
 
-```
+```MyHost.js
 myhost.current()
   .then(console.log)
   .catch(console.error);
@@ -373,7 +373,7 @@ Submarine.jsはqueryにより、サーバの現在の状態を取得し、test�
 
 これまでのquery関数やtest関数は、サーバの状態を確認する、いわば読み取り(Read)の処理でしたが、今度は状態を変更する書き込み(Write)の処理を実行します
 
-```
+```MyHost4.js
 const Submarine=require('v1.1/Submarine');
 
 
@@ -517,7 +517,7 @@ Submarine.jsの機能を使って、OpenStackなどのオーケストレーシ�
 
 まずは、この記事で以前にも紹介したとおり、Submarine.jsを拡張したクラスを定義します
 
-```
+```Kvms.js
 const Submarine=require('v1.1/Submarine');
 
 
@@ -552,7 +552,7 @@ const Kvm=class extends Submarine {
 
 そしてここからが、定義したクラスを複数ホストに対して、適用できるようにする部分です
 
-```
+```Kvms.js
 const Kvms=Submarine.hosts(
   host => new Kvm({
     conn: 'ssh',
@@ -576,7 +576,7 @@ const Kvms=Submarine.hosts(
 あとは新しく生成された`Kvms`クラスをnewしてcheckコマンドを実行します
 
 
-```
+```Kvms.js
 const kvms=new Kvms();
 
 
