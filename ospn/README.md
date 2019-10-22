@@ -433,6 +433,8 @@ command関数の実行には、query関数の実行はcurrent関数、test関数
 
 このcorrect関数は「testが失敗(1つでもfalseが含まれる)の場合のみcommandを実行する」という特徴があります。なので今回、新しく登場したcommand関数は「ホームディレクトリにproject2ディレクトリが存在しない場合に実行されるShellScript」を返すように書かれています
 
+correct = 修正する、つまり失敗したテストが成功するように修正するという意味です
+
 サンプルコードではcommand関数が呼び出された場合には`/home/mjusui/project2`を作成し、Submarine.jsを使えるようセットアップするShellScriptが定義されています(この記事でも紹介した手順です)
 
 これをnodeコマンドで実行した結果が、下のスクリーンショットとなります
