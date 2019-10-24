@@ -508,7 +508,7 @@ $ virt-install \
   --extra-args \
     'console=tty0 console=ttyS0,115200n8'
 ```
-
+![virt-install](./virt-install-cropped.png)
 
 
 ## 仮想マシン構築処理の流れ
