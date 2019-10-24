@@ -507,9 +507,11 @@ $ virt-install \
     ./CentOS-7-x86_64-Minimal-1908.iso \
   --extra-args \
     'console=tty0 console=ttyS0,115200n8'
+$ virsh list --all
 ```
 ![virt-install](./virt-install-cropped.png)
 
+うまくいけば`test-centos7-001`という名前の仮想マシンが作成されるでしょう
 
 ## 仮想マシン構築処理の流れ
 
