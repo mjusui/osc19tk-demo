@@ -476,6 +476,7 @@ Submarine.jsの機能を使って、OpenStackなどのオーケストレーシ�
   ```
   OS : Ubuntu 18.04
   libvirtd : 4.0.0
+  virtinst : 1.5.1
   cpu : 4 cores
   メモリ : 2GB
   ディスク : 30GB
@@ -493,8 +494,22 @@ Submarine.jsの機能を使って、OpenStackなどのオーケストレーシ�
 KVMサーバの環境構築ができているか確認するために、以下のコマンドで仮想マシンが作成できるか確認しておきます  
 
 ```
-
+$ mkdir -p tmp/isos
+$ curl -LO http://ftp.riken.jp/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso
+$ virt-install \
+  --name test-centos7-001 \
+  --vcpu 2 \
+  --memory 1024 \
+  --disk size=12 \
+  --noautoconsole \
+  --nographics \
+  --location \
+    ./CentOS-7-x86_64-Minimal-1908.iso \
+  --extra-args \
+    'console=tty0 console=ttyS0,115200n8'
 ```
+
+
 
 ## 仮想マシン構築処理の流れ
 
