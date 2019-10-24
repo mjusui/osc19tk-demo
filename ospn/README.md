@@ -476,13 +476,16 @@ Submarine.jsの機能を使って、OpenStackなどのオーケストレーシ�
   ```
   OS : Ubuntu 18.04
   libvirtd : 4.0.0
-  cpu : 4
+  cpu : 4 cores
   メモリ : 2GB
   ディスク : 30GB
   ```
 * 作成する仮想マシン
   ```
-  OS : CentOS7  
+  OS : CentOS7
+  cpu: 2 cores
+  メモリ : 1GB
+  ディスク : 12GB
   ```
 
 この記事では、KVM環境の構築は、すでに完了した状態から機能の実装をスタートしていきます
