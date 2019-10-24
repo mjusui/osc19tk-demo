@@ -656,7 +656,23 @@ virsh list \
 
 * (1)すでに存在する仮想マシンのCPUの数
   ```vcpus.sh
-  
+  vcpus=0
+
+  for vm in $(
+    virsh list \
+      --name \
+      --all \
+    |grep -v "^\s*$"
+  );do
+    vcpus=$(( $vcpus + $(
+      virsh dumpxml \
+        $vm \
+      |grep "<vcpu .*</vcpu>" \
+      |sed -e "s/^.*<vcpu .*>\([0-9]*\)<\/vcpu>$/\1/g" 
+    ) ))
+  done
+
+  echo $vcpus
   ```
 * (2)新しく作成する仮想マシンのCPU
   ```vcpu.sh
