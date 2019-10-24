@@ -638,8 +638,12 @@ kvms.check()
 取得するコマンドは以下のようになります
 
 ```vms.sh
-virsh list --name --all \
-  |grep -v "^\s*$"
+#!/bin/bash
+
+virsh list \
+  --name \
+  --all \
+|grep -v "^\s*$"
 ```
 
 ### CPUリソースの取得
