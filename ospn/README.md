@@ -678,7 +678,7 @@ virsh list \
   ```cpus.sh
   #!/bin/bash
   virsh nodeinfo \
-  |grep "^CPU(s)" \
+  |grep "^CPU(s):" \
   |awk '{print $2}'
   ```
 
