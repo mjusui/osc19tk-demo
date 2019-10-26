@@ -687,6 +687,14 @@ virsh list \
 
 ### メモリリソースの取得
 
+メモリに関しても、CPUと同様の制約があります
+
+```
+(1)すでに存在する仮想マシンのメモリ + 新しく作成する仮想マシンのメモリ < (2)物理メモリ
+```
+
+これも(1)(2)を取得するShellScriptを書きます
+
 ```memMB.sh
 echo $(( $(virsh \
     nodememstats \
@@ -719,6 +727,8 @@ echo $vmemMB
 
 ### ボリュームリソースの取得
 
+ボリュームの場合もCPU、メモリと同様です
+
 ```volGB.sh
 echo $(( $(
   cd /var/lib/libvirt/images \
@@ -750,5 +760,14 @@ for vm in $(
 done
 
 echo $vvolGB
+```
+
+### KVMのリソースをqueryで取得する
+
+すでに各種リソース状況を取得するShellScriptは書けました
+
+それぞれをquery化すると、以下のようになります
+
+```
 ```
 
