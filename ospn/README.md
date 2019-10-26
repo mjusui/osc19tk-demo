@@ -679,7 +679,6 @@ virsh list \
   ```
 * (3)物理CPUの数
   ```cpus.sh
-  #!/bin/bash
   virsh nodeinfo \
   |grep "^CPU(s):" \
   |awk '{print $2}'
