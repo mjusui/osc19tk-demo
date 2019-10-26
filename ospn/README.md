@@ -687,9 +687,53 @@ virsh list \
 
 ### メモリリソースの取得
 
+```memMB.sh
+echo $(( $(virsh \
+    nodememstats \
+  |grep "^total\s*:" \
+  |awk '{print $3}'
+) / 1024 ))
+````
+
+```vmemMB.sh
+vmemMB=0
+
+for vm in $(
+  virsh list \
+    --name \
+    --all \
+  |grep -v "^\s*$"
+);do
+  vmemMB=$(( $vmemMB + $(
+    virsh dumpxml \
+      $vm \
+    |grep "<memory .*unit='KiB'.*</memory>$" \
+    |sed -e "s/^.*>\([0-9]*\)<.*$/\1/g"
+  ) / 1024 ))
+done
+
+echo $vmemMB
+```
+
+
+
 ### ボリュームリソースの取得
 
+```volGB.sh
+echo $(( $(
+  cd /var/lib/libvirt/images \
+    && df -P . \
+  |grep -v "^File" \
+  |awk '{print $3 + $4}'
+) /1024 /1024 ))
+```
 
-
-
+```vvolG.sh
+echo $(( 1 + $(
+  cd /var/lib/libvirt/images \
+    && df -P . \
+  |grep -v "^File" \
+  |awk '{print $3}'
+) /1024 /1024 ))
+```
 
