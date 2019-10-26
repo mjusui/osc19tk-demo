@@ -905,5 +905,5 @@ querykvms.current()
 
 実行結果はこんな感じ
 
-
+![query-kvms-js](./query-kvms-js.png)
 
