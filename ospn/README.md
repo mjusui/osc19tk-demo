@@ -737,7 +737,7 @@ for vm in $(
     --all \
   |grep -v "^\s*$"
 );do
-  vvolGB=$(( 1 + $vvolGB + $(
+  vvolGB=$(( $vvolGB + $(
     sudo qemu-img info $(
       virsh dumpxml \
         $vm \
