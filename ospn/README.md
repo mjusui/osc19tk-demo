@@ -728,12 +728,27 @@ echo $(( $(
 ) /1024 /1024 ))
 ```
 
-```vvolG.sh
-echo $(( 1 + $(
-  cd /var/lib/libvirt/images \
-    && df -P . \
-  |grep -v "^File" \
-  |awk '{print $3}'
-) /1024 /1024 ))
+```vvolGB.sh
+vvolGB=0
+
+for vm in $(
+  virsh list \
+    --name \
+    --all \
+  |grep -v "^\s*$"
+);do
+  vvolGB=$(( 1 + $vvolGB + $(
+    sudo qemu-img info $(
+      virsh dumpxml \
+        $vm \
+      |grep "<source file='.*'/>" \
+      |sed -e  "s/<source file='\(.*\)'\/>/\1/g"
+    ) \
+    |grep "^virtual size: " \
+    |sed -e "s/^virtual size: .*(\([0-9]*\) bytes)$/\1/g"
+  ) /1024 /1024 /1024 ))
+done
+
+echo $vvolGB
 ```
 
