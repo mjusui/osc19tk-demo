@@ -770,7 +770,7 @@ echo $vvolGB
 それぞれをquery化すると、以下のようになります
 
 <details>
-  <summary> xxx </summary>
+  <summary>長めなので折りたたんでいます</summary>
   
 ```QueryKvm.js
 const Submarine=require('v1.1/Submarine');
