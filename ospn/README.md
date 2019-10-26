@@ -638,7 +638,7 @@ kvms.check()
 取得するコマンドは以下のようになります
 
 ```vms.sh
-virsh list \
+sudo virsh list \
   --name \
   --all \
 |grep -v "^\s*$"
@@ -662,13 +662,13 @@ exit 0
   vcpus=0
 
   for vm in $(
-    virsh list \
+    sudo virsh list \
       --name \
       --all \
     |grep -v "^\s*$"
   );do
     vcpus=$(( $vcpus + $(
-      virsh dumpxml \
+      sudo virsh dumpxml \
         $vm \
       |grep "<vcpu .*</vcpu>" \
       |sed -e "s/^.*<vcpu .*>\([0-9]*\)<\/vcpu>$/\1/g" 
@@ -696,7 +696,8 @@ exit 0
 これも(1)(2)を取得するShellScriptを書きます
 
 ```memMB.sh
-echo $(( $(virsh \
+echo $(( $(
+  virsh \
     nodememstats \
   |grep "^total\s*:" \
   |awk '{print $3}'
@@ -707,13 +708,13 @@ echo $(( $(virsh \
 vmemMB=0
 
 for vm in $(
-  virsh list \
+  sudo virsh list \
     --name \
     --all \
   |grep -v "^\s*$"
 );do
   vmemMB=$(( $vmemMB + $(
-    virsh dumpxml \
+    sudo virsh dumpxml \
       $vm \
     |grep "<memory .*unit='KiB'.*</memory>$" \
     |sed -e "s/^.*>\([0-9]*\)<.*$/\1/g"
@@ -742,14 +743,14 @@ echo $(( $(
 vvolGB=0
 
 for vm in $(
-  virsh list \
+  sudo virsh list \
     --name \
     --all \
   |grep -v "^\s*$"
 );do
   vvolGB=$(( $vvolGB + $(
     sudo qemu-img info $(
-      virsh dumpxml \
+      sudo virsh dumpxml \
         $vm \
       |grep "<source file='.*'/>" \
       |sed -e  "s/<source file='\(.*\)'\/>/\1/g"
