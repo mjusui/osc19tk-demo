@@ -677,7 +677,7 @@ virsh list \
 
   echo $vcpus
   ```
-* (3)物理CPUの数
+* (2)物理CPUの数
   ```cpus.sh
   virsh nodeinfo \
   |grep "^CPU(s):" \
