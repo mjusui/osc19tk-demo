@@ -767,11 +767,8 @@ echo $vvolGB
 
 すでに各種リソース状況を取得するShellScriptは書けました
 
-それぞれをquery化すると、以下のようになります
+それぞれをquery化すると、以下のようになります(長くなりますが、そこまで読みにくくはないと思います)
 
-<details>
-  <summary>長めなので折りたたんでいます</summary>
-  
 ```QueryKvm.js
 const Submarine=require('v1.1/Submarine');
 
@@ -906,4 +903,7 @@ querykvms.current()
 
 ```
 
-</details>
+実行結果はこんな感じ
+
+
+
