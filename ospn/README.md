@@ -772,7 +772,7 @@ echo $vvolGB
 <details>
   <summary> xxx </summary>
   
-```
+```QueryKvm.js
 const Submarine=require('v1.1/Submarine');
 
 
