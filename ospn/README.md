@@ -1074,11 +1074,16 @@ const AllocateVm=class extends Submarine {
 
 `command`関数が実行される条件を、もう一度確認しましすと「テストが1つでも失敗(false)の場合」でした。しかし、今回は「KVMリソースに空きがある=全てのテストが成功(true)」なので、`command`関数をここで使ってしまうと、本来実行してほしいサーバで実行されず、実行してほしくないサーバで実行されることになってしまうのです
 
-そこでSubmarine.jsには「テストが全て成功(true)のときに実行される」`batch`関数が実装されています。`command`関数とは逆の条件で実行されます
+そこでSubmarine.jsには「テストが全て成功(true)のときに実行される」`batch`関数というものが実装されています。`command`関数とは逆の条件で実行されます
 
 これはまさに、「実行するために必要な前提条件を全て満たした場合のみ、バッチを実行する」という意図で実装されています
 
-```
+また`command`関数は`correct(=修正する)`関数で実行しましたが、`batch`関数は`call(呼ぶ)`という関数で実行します
+
+
+さらにもう一つ、仮想マシンのアロケーション機能を実装するのに、まだ紹介していない新しい機能を使います
+
+```CreateVm.js
 const CreateVm=class extends Submarine.hosts(
   host => new AllocateVm({
     conn: 'ssh',
@@ -1116,6 +1121,15 @@ const CreateVm=class extends Submarine.hosts(
 };
 ```
 
+これまで`Submarine.host`関数は単体で使っていましたが、ここでは`Submarine.host`関数が返したクラスを、さらに拡張して`complex`という関数を実装しています
+
+これまでSubmarine.jsではqueryやtestは、接続先のサーバごとに独立で実行されていましたが、この`complex`という関数は、あるサーバのテスト結果を別のサーバのテスト結果に反映したい場合に利用します
+
+今回実装しようとしている機能は「2台のKVMサーバのうち、空いているホストを1台選択し、仮想マシンを作成する」というものですが、2台ともリソースに空きがあり`complex`関数を定義していなかった場合には、2台ともに同じ仮想マシンが作成されることになってしまいます
+
+これを避けるため、2台ともテストが成功した(ソースに空きがある)場合には、どちらか1台だけ選択し、残りの1台のテストは失敗になるよう、`complex`関数内で、テスト結果に情報を追加しているのです(`isTarget`というテスト項目を追加し、2つ以上はtrueにならないようにしています)
+
+
 ```CreateVm.js
 const createvm=new CreateVm();
 
@@ -1125,4 +1139,13 @@ createvm.call()
   .catch(console.error);
 ```
 
+最後は応用的な機能が一挙に登場しましたが、あとは`call`関数で`batch`を実行するだけです
+
+
 ![create-vm-js](./create-vm-js-cropped.png)
+
+
+仮想マシンが作成されたログが表示されたJSONの`stdout`や`stdouts`というキーで確認できますね
+
+
+
