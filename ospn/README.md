@@ -925,6 +925,7 @@ querykvms.current()
 
 新しく作成する仮想マシンに対して、KVMリソースに空きがあるかを確認するだけなので、test関数はquery関数ほど長くならずに済みます
 
+
 ```TestKvms.js
 const Submarine=require('v1.1/Submarine');
 
@@ -983,3 +984,5 @@ testkvms.check()
   .then(console.log)
   .catch(console.error);
 ```
+
+
