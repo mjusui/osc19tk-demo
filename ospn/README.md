@@ -926,4 +926,60 @@ querykvms.current()
 新しく作成する仮想マシンに対して、KVMリソースに空きがあるかを確認するだけなので、test関数はquery関数ほど長くならずに済みます
 
 ```
+const Submarine=require('v1.1/Submarine');
+
+
+const QueryKvm=class extends Submarine {
+
+  query(){
+      ...
+  }
+
+  getVmSpecs(){
+    return {
+      name: 'test-centos7-002',
+      vcpus: 2,
+      vmemMB: 1024,
+      vvolGB: 12,
+    };
+  }
+  test(stats){
+    const vm=this.getVmSpecs();
+
+    return {
+      vm_name_available:
+        typeof stats.vms === 'string'
+          ? !(stats.vms ===  vm.name)
+        : Array.isArray(stats.vms)
+          ? stats.vms.includes(vm.name)
+        : false,
+      cpus_available:
+        stats.vcpus*1 + vm.vcpus < stats.cpus,
+      mem_available:
+        stats.vmemMB*1 + vm.vmemMB < stats.memMB,
+      vol_available:
+        stats.vvolGB*1 + vm.vvolGB < stats.volGB,
+    };
+  }
+
+}
+
+
+const TestKvms=Submarine.hosts(
+  host => new TestKvm({
+    conn: 'ssh',
+    host: host,
+  }),
+
+  'ubu1804-kvm1',
+  'ubu1804-kvm2'
+);
+
+
+const testkvms=new TestKvms();
+
+
+testkvms.check()
+  .then(console.log)
+  .catch(console.error);
 ```
