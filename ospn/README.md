@@ -986,4 +986,4 @@ testkvms.check()
 ```
 
 
-![test-kvms-js](./test-kvms-js-cropped.pnd)
+![test-kvms-js](./test-kvms-js-cropped.png)
