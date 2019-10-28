@@ -1147,5 +1147,6 @@ createvm.call()
 
 仮想マシンが作成されたログが表示されたJSONの`stdout`や`stdouts`というキーで確認できますね
 
+![create-vm-js-twice](./create-vm-js-twice-cropped.png)
 
 
