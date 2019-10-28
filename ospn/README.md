@@ -986,3 +986,4 @@ testkvms.check()
 ```
 
 
+![test-kvms-js](./test-kvms-js-cropped.pnd)
