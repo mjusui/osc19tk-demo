@@ -925,6 +925,7 @@ querykvms.current()
 
 新しく作成する仮想マシンに対して、KVMリソースに空きがあるかを確認するだけなので、test関数はquery関数ほど長くならずに済みます
 
+先ほどの`QueryKvms.js`にtest関数を追加します
 
 ```TestKvms.js
 const Submarine=require('v1.1/Submarine');
@@ -952,7 +953,7 @@ const QueryKvm=class extends Submarine {
         typeof stats.vms === 'string'
           ? !(stats.vms ===  vm.name)
         : Array.isArray(stats.vms)
-          ? stats.vms.includes(vm.name)
+          ? !stats.vms.includes(vm.name)
         : false,
       cpus_available:
         stats.vcpus*1 + vm.vcpus < stats.cpus,
@@ -984,6 +985,15 @@ testkvms.check()
   .then(console.log)
   .catch(console.error);
 ```
+
+ここでtest関数で定義された戻り値について、補足説明しておきます
+
+* `vm_name_available`
+  仮想マシン名が重複していないかを確認する項目  
+  Submarine.jsの仕様上、KVM上の仮想マシンが1台のときにはstdoutは1行となるためquery関数の結果は文字列、2台以上のときには改行区切りの配列となるため、両パターンに対応するために`stats.vms`が文字列の場合と配列の場合で、それぞれテストする条件を変えています
+* `cpu_available`
+  `すでに存在する仮想マシンのvcpu数合計(stats.vcpus) + 新しく作成する仮想マシンのvcpu数(vm.vcpus) < KVMサーバの物理CPU数(stats.cpus)`という式を表現している。query関数の結果は全て文字列で返されるため`stats.vcpus(文字列)`に対して1をかける(`*1`)ことで数字に変換している
+  `mem_available`,`vol_available`も同様
 
 
 ![test-kvms-js](./test-kvms-js-cropped.png)
