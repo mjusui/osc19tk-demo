@@ -931,7 +931,7 @@ querykvms.current()
 const Submarine=require('v1.1/Submarine');
 
 
-const QueryKvm=class extends Submarine {
+const TestKvm=class extends Submarine {
 
   query(){
       ...
@@ -1012,9 +1012,105 @@ test関数で、KVMサーバのリソースの空き状態を確認するとこ�
 
 まずは仮想マシンを作成するコマンドをSubmarine.jsに実装しましょう
 
-```
+```CreateVm.js
+const Submarine=require('v1.1/Submarine');
+
+
+const AllocateVm=class extends Submarine {
+
+  query(){
+    ...
+  }
+
+  getVmSpecs(){
+    ...
+  }
+  test(stats){
+    ...
+  }
+  
+  batch(){
+    const vm=this.getVmSpecs();
+
+    return String.raw`
+      dir=/var/submarine/isos
+
+      sudo mkdir -p \
+        $dir
+
+      sudo test -r \
+        $dir/CentOS-7-x86_64-Minimal-1908.iso \
+      || sudo curl -sL \
+        -o $dir/CentOS-7-x86_64-Minimal-1908.iso \
+      http://ftp.riken.jp/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso \
+
+      sudo virt-install \
+        --name ${vm.name} \
+        --vcpu ${vm.vcpus} \
+        --memory ${vm.vmemMB} \
+        --disk size=${vm.vvolGB} \
+        --noautoconsole \
+        --nographics \
+        --location \
+          $dir/CentOS-7-x86_64-Minimal-1908.iso \
+        --extra-args \
+          'console=tty0 console=ttyS0,115200n8'
+    `;
+  }
+
+
+}
+
 
 ```
 
+
+
+```
+const CreateVm=class extends Submarine.hosts(
+  host => new AllocateVm({
+    conn: 'ssh',
+    host: host,
+  }),
+
+  'ubu1804-kvm1',
+  'ubu1804-kvm2'
+){
+  complex(exams){
+    let selected=false;
+
+    return exams.map(
+      (exam)=>{
+        if(
+          exam.ok
+          && selected == false
+        ){
+          exam.tests.isTarget = true;
+          exam.good++;
+          exam.total++;
+
+          selected = true;
+        }else{
+          exam.tests.isTarget = false;
+          exam.bad++;
+          exam.total++;
+          exam.ok = false;
+        }
+
+        return exam;
+      }
+    );
+  }
+};
+```
+
+```CreateVm.js
+const createvm=new CreateVm();
+
+
+createvm.call()
+  .then(console.log)
+  .catch(console.error);
+```
 
 
