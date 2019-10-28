@@ -1151,7 +1151,7 @@ createvm.call()
 
 ![create-vm-js-twice](./create-vm-js-twice-cropped.png)
 
-両KVMの仮想マシンを消して、実行すると、今度はどちらか1台にだけ仮想マシンが作成されることでしょう
+両KVMの仮想マシンを消して、再度実行すると、今度はどちらか1台にだけ仮想マシンが作成されることでしょう
 
 
 
