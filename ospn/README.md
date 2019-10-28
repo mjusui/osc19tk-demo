@@ -988,11 +988,12 @@ testkvms.check()
 
 ここでtest関数で定義された戻り値について、補足説明しておきます
 
-* `vm_name_available`
+* `vm_name_available`  
   仮想マシン名が重複していないかを確認する項目  
   Submarine.jsの仕様上、KVM上の仮想マシンが1台のときにはstdoutは1行となるためquery関数の結果は文字列、2台以上のときには改行区切りの配列となるため、両パターンに対応するために`stats.vms`が文字列の場合と配列の場合で、それぞれテストする条件を変えています
-* `cpu_available`
-  `すでに存在する仮想マシンのvcpu数合計(stats.vcpus) + 新しく作成する仮想マシンのvcpu数(vm.vcpus) < KVMサーバの物理CPU数(stats.cpus)`という式を表現している。query関数の結果は全て文字列で返されるため`stats.vcpus(文字列)`に対して1をかける(`*1`)ことで数字に変換している
+* `cpu_available`  
+  `すでに存在する仮想マシンのvcpu数合計(stats.vcpus) + 新しく作成する仮想マシンのvcpu数(vm.vcpus) < KVMサーバの物理CPU数(stats.cpus)`  
+  という式を表現している。query関数の結果は全て文字列で返されるため`stats.vcpus(文字列)`に対して1をかける(`*1`)ことで数字に変換している
   `mem_available`,`vol_available`も同様
 
 
