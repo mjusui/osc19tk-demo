@@ -765,9 +765,9 @@ echo $vvolGB
 
 ### KVMのリソースをqueryで取得する
 
-すでに各種リソース状況を取得するShellScriptは書けました
+すでに各種リソース状況を取得するShellScriptは書けたので、これらをquery関数の戻り値として定義すれば、queryの完成です
 
-それぞれをquery化すると、以下のようになります(長くなりますが、そこまで読みにくくはないと思います)
+query関数が長くなりますが、そこまで読みにくくはないと思います
 
 ```QueryKvm.js
 const Submarine=require('v1.1/Submarine');
@@ -906,4 +906,22 @@ querykvms.current()
 実行結果はこんな感じ
 
 ![query-kvms-js](./query-kvms-js-cropped.png)
+
+このように、全体を実装する前にqueryだけ書いて手軽に動作を確認できるのもSubmarine.jsの利点ですね
+
+### 仮想マシンを作成できるかどうかtestする
+
+次はquery関数で取得した値をもとに、KVMサーバに仮想マシンが作成できるかどうかのtestを実装します
+
+今回、作成する仮想マシンは以下のようなスペックです
+
+* 作成する仮想マシン
+  ```
+  OS : CentOS7
+  cpu: 2 cores
+  メモリ : 1GB
+  ディスク : 12GB
+  ```
+
+
 
