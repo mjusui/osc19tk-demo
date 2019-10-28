@@ -1113,4 +1113,4 @@ createvm.call()
   .catch(console.error);
 ```
 
-
+![create-vm-js](./create-vm-js-cropepd.png)
