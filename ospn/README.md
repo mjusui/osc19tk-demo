@@ -704,7 +704,7 @@ exit 0
     |awk '{print $3}'
   ) / 1024 ))
   ```
-  * (1)すでに存在する仮想マシンのメモリ
+* (1)すでに存在する仮想マシンのメモリ
   ```vmemMB.sh
   vmemMB=0
 
@@ -731,38 +731,40 @@ exit 0
 
 ボリュームの場合もCPU、メモリと同様です
 
-```volGB.sh
-echo $(( $(
-  cd /var/lib/libvirt/images \
-    && df -P . \
-  |grep -v "^File" \
-  |awk '{print $3 + $4}'
-) /1024 /1024 ))
-```
+* 物利ボリューム
+  ```volGB.sh
+  echo $(( $(
+    cd /var/lib/libvirt/images \
+      && df -P . \
+    |grep -v "^File" \
+    |awk '{print $3 + $4}'
+  ) /1024 /1024 ))
+  ```
 
-```vvolGB.sh
-vvolGB=0
+* すでに存在する仮想マシンに割り当てられたボリューム
+  ```vvolGB.sh
+  vvolGB=0
 
-for vm in $(
-  sudo virsh list \
-    --name \
-    --all \
-  |grep -v "^\s*$"
-);do
-  vvolGB=$(( $vvolGB + $(
-    sudo qemu-img info $(
-      sudo virsh dumpxml \
-        $vm \
-      |grep "<source file='.*'/>" \
-      |sed -e  "s/<source file='\(.*\)'\/>/\1/g"
-    ) \
-    |grep "^virtual size: " \
-    |sed -e "s/^virtual size: .*(\([0-9]*\) bytes)$/\1/g"
-  ) /1024 /1024 /1024 ))
-done
+  for vm in $(
+    sudo virsh list \
+      --name \
+      --all \
+    |grep -v "^\s*$"
+  );do
+    vvolGB=$(( $vvolGB + $(
+      sudo qemu-img info $(
+        sudo virsh dumpxml \
+          $vm \
+        |grep "<source file='.*'/>" \
+        |sed -e  "s/<source file='\(.*\)'\/>/\1/g"
+      ) \
+      |grep "^virtual size: " \
+      |sed -e "s/^virtual size: .*(\([0-9]*\) bytes)$/\1/g"
+    ) /1024 /1024 /1024 ))
+  done
 
-echo $vvolGB
-```
+  echo $vvolGB
+  ```
 
 ### KVMのリソースをqueryで取得する
 
