@@ -695,34 +695,35 @@ exit 0
 
 これも(1)(2)を取得するShellScriptを書きます
 
-```memMB.sh
-echo $(( $(
-  virsh \
-    nodememstats \
-  |grep "^total\s*:" \
-  |awk '{print $3}'
-) / 1024 ))
-````
-
-```vmemMB.sh
-vmemMB=0
-
-for vm in $(
-  sudo virsh list \
-    --name \
-    --all \
-  |grep -v "^\s*$"
-);do
-  vmemMB=$(( $vmemMB + $(
-    sudo virsh dumpxml \
-      $vm \
-    |grep "<memory .*unit='KiB'.*</memory>$" \
-    |sed -e "s/^.*>\([0-9]*\)<.*$/\1/g"
+* (2)物理メモリ
+  ```memMB.sh
+  echo $(( $(
+    virsh \
+      nodememstats \
+    |grep "^total\s*:" \
+    |awk '{print $3}'
   ) / 1024 ))
-done
+  ```
+  * (1)すでに存在する仮想マシンのメモリ
+  ```vmemMB.sh
+  vmemMB=0
 
-echo $vmemMB
-```
+  for vm in $(
+    sudo virsh list \
+      --name \
+      --all \
+    |grep -v "^\s*$"
+  );do
+    vmemMB=$(( $vmemMB + $(
+      sudo virsh dumpxml \
+        $vm \
+      |grep "<memory .*unit='KiB'.*</memory>$" \
+      |sed -e "s/^.*>\([0-9]*\)<.*$/\1/g"
+    ) / 1024 ))
+  done
+
+  echo $vmemMB
+  ```
 
 
 
