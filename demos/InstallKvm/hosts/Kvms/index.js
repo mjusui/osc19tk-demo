@@ -1,4 +1,4 @@
-const Submarine=require('Submarine/v1.9.9-beta2');
+const Submarine=require('Submarine/v1.9.9-beta3');
 const Kvm=require('models/Kvm');
 
 module.exports=Submarine.hosts(

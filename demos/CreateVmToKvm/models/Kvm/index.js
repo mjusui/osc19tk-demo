@@ -1,7 +1,7 @@
-const Submarine=require('Submarine/v1.9.9-beta2');
+const Submarine=require('Submarine/v1.9.9-beta3');
 
 
-module.exports=class extends Submarine {
+const Kvm=class extends Submarine {
   format(stats){
     return Object.assign(
       stats, {
@@ -119,5 +119,81 @@ module.exports=class extends Submarine {
 
     }
   }  
+
+  vmSpecs(){
+    return {
+      name: 'centos7-test001',
+      vcpus: 1,
+      vmemMB: 512,
+      vvolGB: 12,
+    };
+  }
+  test(stats){
+    const vm=this.vmSpecs();
+
+    return {
+      cpu_available:
+        stats.vcpus*1 + vm.vcpus < stats.cpus*1,
+      mem_available:
+        stats.vmemMB*1 + vm.vmemMB < stats.memMB*1,
+      vol_available:
+        stats.vvolGB*1 + vm.vvolGB < stats.volGB*1,
+      vm_name_available:
+        !stats.vms.includes(vm.name),
+    };
+  }
+
+  batch(){
+    const vm=this.vmSpecs();
+    const dir='/var/submarine/isos';
+
+    return String.raw`
+      sudo mkdir -p \
+        ${dir}/
+
+      sudo test -r \
+        ${dir}/CentOS-7-x86_64-Minimal-1908.iso \
+      || curl -sL \
+        -o ${dir}/CentOS-7-x86_64-Minimal-1908.iso \
+      http://ftp.riken.jp/Linux/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso
+        
+      sudo virt-install \
+        --name ${vm.name} \
+        --vcpu ${vm.vcpus} \
+        --memory ${vm.vmemMB} \
+        --disk size=${vm.vvolGB} \
+        --noautoconsole \
+        --nographics \
+        --location \
+          ${dir}/CentOS-7-x86_64-Minimal-1908.iso \
+        --extra-args \
+          'console=tty0 console=ttyS0,115200n8'
+    `;
+  }
 }
 
+
+const KvmFailed=class extends Kvm {
+  test(){
+    return {
+      faild: false,
+    };
+  }
+}
+
+
+const KvmError=class extends Submarine {
+  query(){
+    return {
+      error: 'exit 1',
+    };
+  }
+}
+
+
+
+module.exports={
+  Kvm: Kvm,
+  KvmFailed: KvmFailed,
+  KvmError: KvmError,
+}
